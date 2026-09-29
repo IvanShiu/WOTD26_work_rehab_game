@@ -37,7 +37,7 @@ export const liCaseStory = {
 
   introduction: {
     title: {
-      en: "Mr Li's return-to-driving journey",
+      en: "Mr Lee's return-to-driving journey",
       "zh-Hant": "李生的重返駕駛旅程",
     },
     story: {

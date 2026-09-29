@@ -102,7 +102,7 @@ function App() {
               onClick={startJourney}
             >
               {isEnglish
-                ? "Start Li's journey"
+                ? "Start Lee's journey"
                 : "開始李生的復康旅程"}
             </Button>
           </div>
@@ -131,7 +131,7 @@ function App() {
             onComplete={completeStage}
           />
         );
-        
+
       case "braking":
         return (
           <BrakingExperienceGame

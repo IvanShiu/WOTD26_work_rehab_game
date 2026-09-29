@@ -1,71 +1,79 @@
 import { useCallback, useReducer } from "react";
 import {
-  assessmentStages,
-  type AssessmentStage,
-  type DomainScores,
-  type GameState,
+  rehabStages,
   type Language,
-  type StageId,
+  type RehabGameState,
+  type RehabScreenId,
+  type StageResult,
 } from "../types/game";
 
-const initialState: GameState = {
+const initialState: RehabGameState = {
   currentStage: "welcome",
   completedStages: [],
-  domainScores: {},
+  results: {},
   language: "zh-Hant",
 };
 
 type GameAction =
   | {
-      type: "START_GAME";
+      type: "START_JOURNEY";
     }
   | {
       type: "COMPLETE_STAGE";
-      stage: AssessmentStage;
-      scores: DomainScores;
+      result: StageResult;
     }
   | {
       type: "SET_LANGUAGE";
       language: Language;
     }
   | {
-      type: "RESET_GAME";
+      type: "RESET_JOURNEY";
     };
 
 function gameReducer(
-  state: GameState,
+  state: RehabGameState,
   action: GameAction
-): GameState {
+): RehabGameState {
   switch (action.type) {
-    case "START_GAME":
+    case "START_JOURNEY":
       return {
         ...state,
-        currentStage: assessmentStages[0],
+        currentStage: rehabStages[0],
         completedStages: [],
-        domainScores: {},
+        results: {},
       };
 
     case "COMPLETE_STAGE": {
-      const currentIndex = assessmentStages.indexOf(action.stage);
-      const nextStage: StageId =
-        currentIndex >= 0 &&
-        currentIndex < assessmentStages.length - 1
-          ? assessmentStages[currentIndex + 1]
-          : "result";
+      const { result } = action;
 
-      const alreadyCompleted = state.completedStages.includes(
-        action.stage
+      const currentIndex = rehabStages.indexOf(
+        result.stage
       );
+
+      if (currentIndex === -1) {
+        return state;
+      }
+
+      const alreadyCompleted =
+        state.completedStages.includes(result.stage);
+
+      const nextStage: RehabScreenId =
+        currentIndex < rehabStages.length - 1
+          ? rehabStages[currentIndex + 1]
+          : "result";
 
       return {
         ...state,
         currentStage: nextStage,
         completedStages: alreadyCompleted
           ? state.completedStages
-          : [...state.completedStages, action.stage],
-        domainScores: {
-          ...state.domainScores,
-          ...action.scores,
+          : [
+              ...state.completedStages,
+              result.stage,
+            ],
+        results: {
+          ...state.results,
+          [result.stage]: result,
         },
       };
     }
@@ -76,7 +84,7 @@ function gameReducer(
         language: action.language,
       };
 
-    case "RESET_GAME":
+    case "RESET_JOURNEY":
       return {
         ...initialState,
         language: state.language,
@@ -93,37 +101,43 @@ export function useGameState() {
     initialState
   );
 
-  const startGame = useCallback(() => {
-    dispatch({ type: "START_GAME" });
+  const startJourney = useCallback(() => {
+    dispatch({
+      type: "START_JOURNEY",
+    });
   }, []);
 
   const completeStage = useCallback(
-    (stage: AssessmentStage, scores: DomainScores) => {
+    (result: StageResult) => {
       dispatch({
         type: "COMPLETE_STAGE",
-        stage,
-        scores,
+        result,
       });
     },
     []
   );
 
-  const setLanguage = useCallback((language: Language) => {
-    dispatch({
-      type: "SET_LANGUAGE",
-      language,
-    });
-  }, []);
+  const setLanguage = useCallback(
+    (language: Language) => {
+      dispatch({
+        type: "SET_LANGUAGE",
+        language,
+      });
+    },
+    []
+  );
 
-  const resetGame = useCallback(() => {
-    dispatch({ type: "RESET_GAME" });
+  const resetJourney = useCallback(() => {
+    dispatch({
+      type: "RESET_JOURNEY",
+    });
   }, []);
 
   return {
     state,
-    startGame,
+    startJourney,
     completeStage,
     setLanguage,
-    resetGame,
+    resetJourney,
   };
 }

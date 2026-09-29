@@ -1,10 +1,12 @@
 import type { HTMLAttributes } from "react";
+import type { Language } from "../types/game";
 
 export interface ProgressBarProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   current: number;
   total: number;
   label?: string;
+  language?: Language;
   showCount?: boolean;
   showPercentage?: boolean;
 }
@@ -13,22 +15,39 @@ export function ProgressBar({
   current,
   total,
   label,
+  language = "zh-Hant",
   showCount = true,
   showPercentage = false,
   className = "",
   ...props
 }: ProgressBarProps) {
-  const safeTotal = Math.max(0, Math.floor(total));
+  const validTotal = Number.isFinite(total)
+    ? Math.max(0, Math.floor(total))
+    : 0;
+
+  const validCurrent = Number.isFinite(current)
+    ? current
+    : 0;
 
   const safeCurrent =
-    safeTotal > 0
-      ? Math.min(Math.max(current, 0), safeTotal)
+    validTotal > 0
+      ? Math.min(Math.max(validCurrent, 0), validTotal)
       : 0;
 
+  const displayCurrent = Math.round(safeCurrent);
+
   const percentage =
-    safeTotal > 0
-      ? Math.round((safeCurrent / safeTotal) * 100)
+    validTotal > 0
+      ? Math.round((safeCurrent / validTotal) * 100)
       : 0;
+
+  const ariaText =
+    language === "en"
+      ? `${displayCurrent} of ${validTotal} stages completed`
+      : `已完成 ${displayCurrent} 個階段，共 ${validTotal} 個階段`;
+
+  const defaultLabel =
+    language === "en" ? "Activity progress" : "活動進度";
 
   return (
     <div
@@ -44,8 +63,11 @@ export function ProgressBar({
           )}
 
           <span className="ml-auto whitespace-nowrap text-slate-500">
-            {showCount && `${safeCurrent} / ${safeTotal}`}
+            {showCount &&
+              `${displayCurrent} / ${validTotal}`}
+
             {showCount && showPercentage && " · "}
+
             {showPercentage && `${percentage}%`}
           </span>
         </div>
@@ -53,11 +75,11 @@ export function ProgressBar({
 
       <div
         role="progressbar"
-        aria-label={label ?? "Progress"}
+        aria-label={label ?? defaultLabel}
         aria-valuemin={0}
-        aria-valuemax={Math.max(safeTotal, 1)}
-        aria-valuenow={safeCurrent}
-        aria-valuetext={`${safeCurrent} of ${safeTotal} stages completed`}
+        aria-valuemax={Math.max(validTotal, 1)}
+        aria-valuenow={displayCurrent}
+        aria-valuetext={ariaText}
         className="h-3 w-full overflow-hidden rounded-full bg-slate-200"
       >
         <div

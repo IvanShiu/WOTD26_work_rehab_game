@@ -60,6 +60,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) {
+    const classes = [
+      "inline-flex items-center justify-center gap-2",
+      "rounded-xl border font-semibold shadow-sm",
+      "touch-manipulation select-none",
+      "transition-colors duration-200",
+      "focus-visible:outline-none focus-visible:ring-2",
+      "focus-visible:ring-blue-600 focus-visible:ring-offset-2",
+      "disabled:cursor-not-allowed disabled:opacity-50",
+      variantClasses[variant],
+      sizeClasses[size],
+      fullWidth ? "w-full" : "",
+      className,
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     return (
       <button
         {...props}
@@ -67,19 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         disabled={disabled || loading}
         aria-busy={loading || undefined}
-        className={[
-          "inline-flex items-center justify-center gap-2",
-          "rounded-xl border font-semibold shadow-sm",
-          "touch-manipulation select-none",
-          "transition-colors duration-200",
-          "focus-visible:outline-none focus-visible:ring-2",
-          "focus-visible:ring-blue-600 focus-visible:ring-offset-2",
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          variantClasses[variant],
-          sizeClasses[size],
-          fullWidth ? "w-full" : "",
-          className,
-        ].join(" ")}
+        className={classes}
       >
         {loading && (
           <>

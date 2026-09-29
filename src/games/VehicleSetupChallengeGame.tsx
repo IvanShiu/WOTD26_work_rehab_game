@@ -95,7 +95,7 @@ export function VehicleSetupChallengeGame({
       <CaseStoryCard
         language={language}
         stageNumber={story.order}
-        totalStages={6}
+        totalStages={7}
         title={getLocalizedText(story.title, language)}
         story={getLocalizedText(story.story, language)}
         focus={getLocalizedText(story.focus, language)}

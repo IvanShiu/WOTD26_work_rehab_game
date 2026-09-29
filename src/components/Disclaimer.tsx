@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from "react";
+import type { Language } from "../types/game";
 
-export type Language = "en" | "zh-Hant";
+export type { Language } from "../types/game";
 
 export interface DisclaimerProps
   extends Omit<HTMLAttributes<HTMLElement>, "children"> {
@@ -42,7 +43,9 @@ export function Disclaimer({
         "text-amber-950",
         compact ? "p-3 text-xs" : "p-4 text-sm",
         className,
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <div className="flex items-start gap-3">
         <span

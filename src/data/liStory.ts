@@ -237,9 +237,65 @@ export const liStageStories: Record<
     },
   },
 
+    braking: {
+    id: "braking",
+    order: 4,
+    title: {
+      en: "Quick-stop braking practice",
+      "zh-Hant": "快速煞車體驗",
+    },
+    story: {
+      en:
+        "After practising safe following distance, Mr Li practises responding to a sudden hazard in a controlled environment.",
+      "zh-Hant":
+        "練習安全車距後，李生在受控環境中練習應對突然出現的危險。",
+    },
+    focus: {
+      en:
+        "Can Mr Li notice a hazard and respond by braking appropriately?",
+      "zh-Hant":
+        "李生能否察覺危險，並適當地作出煞車反應？",
+    },
+    assessment: [
+      {
+        en: "Reaction to a sudden visual hazard",
+        "zh-Hant": "對突然出現的視覺危險作出反應",
+      },
+      {
+        en: "Ability to coordinate seeing and braking",
+        "zh-Hant": "視覺與煞車動作的協調能力",
+      },
+      {
+        en: "Understanding of reaction distance",
+        "zh-Hant": "對反應距離的理解",
+      },
+    ],
+    support: [
+      {
+        en: "Practise in a controlled and predictable environment",
+        "zh-Hant": "先在受控及可預測的環境中練習",
+      },
+      {
+        en: "Look further ahead and anticipate possible hazards",
+        "zh-Hant": "看遠一點，預測可能出現的危險",
+      },
+      {
+        en: "Allow enough space and time before braking",
+        "zh-Hant": "煞車前保留足夠距離及時間",
+      },
+    ],
+    strategy: {
+      en:
+        "Safe driving is not only about reacting quickly. It also involves noticing hazards early and keeping enough space.",
+      "zh-Hant":
+        "安全駕駛不只是反應快，也包括及早察覺危險，以及保持足夠的距離。",
+    },
+  },
+
+
   roadworksDetour: {
     id: "roadworksDetour",
-    order: 4,
+    order: 5,
     title: {
       en: "Managing a roadworks detour",
       "zh-Hant": "處理道路工程及改道",
@@ -294,7 +350,7 @@ export const liStageStories: Record<
 
   driverDistraction: {
     id: "driverDistraction",
-    order: 5,
+    order: 6,
     title: {
       en: "Managing distraction while driving",
       "zh-Hant": "駕駛時處理分心情況",
@@ -349,7 +405,7 @@ export const liStageStories: Record<
 
   communityMobility: {
     id: "communityMobility",
-    order: 6,
+    order: 7,
     title: {
       en: "Planning safe community mobility",
       "zh-Hant": "規劃安全社區流動",

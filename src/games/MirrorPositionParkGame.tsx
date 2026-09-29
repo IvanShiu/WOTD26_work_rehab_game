@@ -1,81 +1,50 @@
-import { useState } from "react";
+import {
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { Button } from "../components/Button";
 import { CaseStoryCard } from "../components/CaseStoryCard";
-import { ChoiceCard } from "../components/ChoiceCard";
 import { OTSupportCard } from "../components/OTSupportCard";
 import {
   getLocalizedText,
   liStageStories,
 } from "../data/liStory";
+import { scoreParkingDistance } from "../lib/scoring";
 import type { RehabStageProps } from "../types/game";
 
-interface ScanPoint {
-  id: string;
-  label: {
-    en: string;
-    "zh-Hant": string;
-  };
-  icon: string;
+interface Position {
+  x: number;
+  y: number;
 }
 
-const scanPoints: ScanPoint[] = [
-  {
-    id: "left-mirror",
-    label: {
-      en: "Left mirror",
-      "zh-Hant": "左側後視鏡",
-    },
-    icon: "◀",
-  },
-  {
-    id: "centre-mirror",
-    label: {
-      en: "Centre mirror",
-      "zh-Hant": "中央後視鏡",
-    },
-    icon: "●",
-  },
-  {
-    id: "right-mirror",
-    label: {
-      en: "Right mirror",
-      "zh-Hant": "右側後視鏡",
-    },
-    icon: "▶",
-  },
-  {
-    id: "blind-spot",
-    label: {
-      en: "Blind spot",
-      "zh-Hant": "盲點",
-    },
-    icon: "!",
-  },
-];
+type Direction =
+  | "up"
+  | "down"
+  | "left"
+  | "right";
 
-const parkingOptions = [
-  {
-    id: "left",
-    title: {
-      en: "Park in the left space",
-      "zh-Hant": "停在左側位置",
-    },
-  },
-  {
-    id: "centre",
-    title: {
-      en: "Park in the marked centre space",
-      "zh-Hant": "停在中間標示的位置",
-    },
-  },
-  {
-    id: "right",
-    title: {
-      en: "Park in the right space",
-      "zh-Hant": "停在右側位置",
-    },
-  },
-];
+const startingPosition: Position = {
+  x: 12,
+  y: 76,
+};
+
+const targetPosition: Position = {
+  x: 70,
+  y: 34,
+};
+
+const stepSize = 4;
+
+function limit(
+  value: number,
+  minimum: number,
+  maximum: number
+): number {
+  return Math.min(
+    maximum,
+    Math.max(minimum, value)
+  );
+}
 
 export function MirrorPositionParkGame({
   language,
@@ -84,32 +53,94 @@ export function MirrorPositionParkGame({
   const isEnglish = language === "en";
   const story = liStageStories.mirrorPositionPark;
 
-  const [checkedPoints, setCheckedPoints] = useState<string[]>(
-    []
+  const [car, setCar] = useState<Position>(
+    startingPosition
   );
-  const [selectedParking, setSelectedParking] =
-    useState<string | null>(null);
+
   const [submitted, setSubmitted] = useState(false);
 
-  const allPointsChecked =
-    checkedPoints.length === scanPoints.length;
-
-  const correctParking = selectedParking === "centre";
-
-  const score = Math.round(
-    (checkedPoints.length / scanPoints.length) * 60 +
-      (correctParking ? 40 : 0)
+  const distanceFromTarget = Math.hypot(
+    car.x - targetPosition.x,
+    car.y - targetPosition.y
   );
 
-  function checkPoint(pointId: string) {
-    if (submitted || checkedPoints.includes(pointId)) {
+  /*
+   * The scoring function uses a simplified game distance.
+   * This is not a real-world parking measurement.
+   */
+  const gameDistance = distanceFromTarget / 3;
+  const score = scoreParkingDistance(gameDistance);
+
+  function moveCar(direction: Direction) {
+    if (submitted) {
       return;
     }
 
-    setCheckedPoints((current) => [
-      ...current,
-      pointId,
-    ]);
+    let horizontalChange = 0;
+    let verticalChange = 0;
+
+    switch (direction) {
+      case "up":
+        verticalChange = -stepSize;
+        break;
+
+      case "down":
+        verticalChange = stepSize;
+        break;
+
+      case "left":
+        horizontalChange = -stepSize;
+        break;
+
+      case "right":
+        horizontalChange = stepSize;
+        break;
+    }
+
+    setCar((current) => ({
+      x: limit(
+        current.x + horizontalChange,
+        5,
+        86
+      ),
+      y: limit(
+        current.y + verticalChange,
+        8,
+        87
+      ),
+    }));
+  }
+
+  function handleKeyboard(
+    event: KeyboardEvent<HTMLDivElement>
+  ) {
+    const keyboardDirections: Record<
+      string,
+      Direction | undefined
+    > = {
+      ArrowUp: "up",
+      ArrowDown: "down",
+      ArrowLeft: "left",
+      ArrowRight: "right",
+      w: "up",
+      W: "up",
+      s: "down",
+      S: "down",
+      a: "left",
+      A: "left",
+      d: "right",
+      D: "right",
+    };
+
+    const direction =
+      keyboardDirections[event.key];
+
+    if (!direction) {
+      return;
+    }
+
+    event.preventDefault();
+    moveCar(direction);
   }
 
   return (
@@ -117,97 +148,178 @@ export function MirrorPositionParkGame({
       <CaseStoryCard
         language={language}
         stageNumber={story.order}
-        totalStages={6}
-        title={getLocalizedText(story.title, language)}
-        story={getLocalizedText(story.story, language)}
-        focus={getLocalizedText(story.focus, language)}
+        totalStages={7}
+        title={getLocalizedText(
+          story.title,
+          language
+        )}
+        story={getLocalizedText(
+          story.story,
+          language
+        )}
+        focus={getLocalizedText(
+          story.focus,
+          language
+        )}
       />
 
-      <div className="rounded-2xl bg-slate-700 p-5 text-center text-white">
-        <div className="mb-3 text-5xl">🚙</div>
+      <div
+        tabIndex={0}
+        onKeyDown={handleKeyboard}
+        aria-label={
+          isEnglish
+            ? "Interactive parking area. Use the arrow keys or the buttons to move the car."
+            : "互動泊車區域。使用方向鍵或按鈕移動車輛。"
+        }
+        className="relative h-80 overflow-hidden rounded-2xl bg-slate-700 outline-none focus-visible:ring-4 focus-visible:ring-blue-300"
+      >
+        {/* Roadway */}
+        <div className="absolute inset-x-[24%] inset-y-0 bg-slate-500">
+          <div className="absolute inset-y-0 left-1/2 border-l-4 border-dashed border-yellow-200" />
+        </div>
 
-        <p className="text-sm">
+        {/* Grass */}
+        <div className="absolute inset-x-0 bottom-0 h-8 bg-green-500" />
+
+        {/* Parking target */}
+        <div
+          className="absolute flex h-24 w-32 items-center justify-center border-4 border-dashed border-yellow-300 bg-yellow-300/10"
+          style={{
+            left: `${targetPosition.x}%`,
+            top: `${targetPosition.y}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <span className="text-center text-xs font-bold text-yellow-100">
+            {isEnglish
+              ? "PARK HERE"
+              : "泊車位置"}
+          </span>
+        </div>
+
+        {/* Static obstacles */}
+        <div
+          aria-hidden="true"
+          className="absolute left-[22%] top-[24%] flex h-16 w-20 items-center justify-center rounded-lg bg-red-700 text-2xl"
+        >
+          🚗
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="absolute left-[45%] top-[68%] flex h-16 w-20 items-center justify-center rounded-lg bg-purple-700 text-2xl"
+        >
+          🚙
+        </div>
+
+        {/* Player car */}
+        <div
+          aria-label={
+            isEnglish ? "Your car" : "你的車輛"
+          }
+          className="absolute flex h-16 w-24 items-center justify-center rounded-xl bg-blue-600 text-3xl shadow-lg transition-all duration-150"
+          style={{
+            left: `${car.x}%`,
+            top: `${car.y}%`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          🚘
+        </div>
+
+        <div className="absolute bottom-3 left-0 right-0 text-center text-xs font-semibold text-white">
           {isEnglish
-            ? "Li is practising in a quiet parking area."
-            : "李生正在安靜的停車場練習。"}
-        </p>
-
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          {scanPoints.map((point) => {
-            const checked = checkedPoints.includes(point.id);
-
-            return (
-              <button
-                key={point.id}
-                type="button"
-                disabled={submitted || checked}
-                aria-pressed={checked}
-                onClick={() => checkPoint(point.id)}
-                className={[
-                  "min-h-12 rounded-xl border p-3",
-                  "font-semibold transition-colors",
-                  checked
-                    ? "border-green-300 bg-green-500 text-white"
-                    : "border-white/30 bg-white/10 text-white hover:bg-white/20",
-                  "disabled:cursor-default",
-                ].join(" ")}
-              >
-                <span className="mr-2">
-                  {checked ? "✓" : point.icon}
-                </span>
-
-                {getLocalizedText(
-                  point.label,
-                  language
-                )}
-              </button>
-            );
-          })}
+            ? "Move slowly and keep checking your position."
+            : "慢速移動，並持續檢查車輛位置。"}
         </div>
       </div>
 
-      <div className="space-y-3">
-        <h3 className="text-lg font-bold text-slate-900">
-          {isEnglish
-            ? "Where should Li position the vehicle?"
-            : "李生應該將車輛停在哪個位置？"}
-        </h3>
+      <div className="rounded-xl bg-slate-100 p-4">
+        <div className="flex items-center justify-between gap-3">
+          <p className="font-semibold text-slate-800">
+            {isEnglish
+              ? "Control the car"
+              : "控制車輛"}
+          </p>
 
-        {parkingOptions.map((option) => {
-          const selected = selectedParking === option.id;
+          <p className="text-xs text-slate-500">
+            {isEnglish
+              ? "Arrow keys / WASD also work"
+              : "方向鍵／WASD 也可以使用"}
+          </p>
+        </div>
 
-          const status =
-            submitted && option.id === "centre"
-              ? "correct"
-              : submitted && selected
-                ? "incorrect"
-                : "neutral";
+        <div className="mx-auto mt-4 grid max-w-xs grid-cols-3 gap-2">
+          <div />
 
-          return (
-            <ChoiceCard
-              key={option.id}
-              selected={selected}
-              status={status}
-              disabled={submitted}
-              onClick={() =>
-                setSelectedParking(option.id)
-              }
-            >
-              {getLocalizedText(option.title, language)}
-            </ChoiceCard>
-          );
-        })}
+          <Button
+            size="sm"
+            variant="outline"
+            disabled={submitted}
+            aria-label={
+              isEnglish
+                ? "Move car up"
+                : "向上移動車輛"
+            }
+            onClick={() => moveCar("up")}
+          >
+            ↑
+          </Button>
+
+          <div />
+
+          <Button
+            size="sm"
+            variant="outline"
+            disabled={submitted}
+            aria-label={
+              isEnglish
+                ? "Move car left"
+                : "向左移動車輛"
+            }
+            onClick={() => moveCar("left")}
+          >
+            ←
+          </Button>
+
+          <Button
+            size="sm"
+            variant="outline"
+            disabled={submitted}
+            aria-label={
+              isEnglish
+                ? "Move car down"
+                : "向下移動車輛"
+            }
+            onClick={() => moveCar("down")}
+          >
+            ↓
+          </Button>
+
+          <Button
+            size="sm"
+            variant="outline"
+            disabled={submitted}
+            aria-label={
+              isEnglish
+                ? "Move car right"
+                : "向右移動車輛"
+            }
+            onClick={() => moveCar("right")}
+          >
+            →
+          </Button>
+        </div>
       </div>
 
       {!submitted ? (
         <Button
           fullWidth
-          disabled={!allPointsChecked || !selectedParking}
           onClick={() => setSubmitted(true)}
         >
           {isEnglish
-            ? "Review parking practice"
-            : "查看泊車練習結果"}
+            ? "Check parking position"
+            : "檢查泊車位置"}
         </Button>
       ) : (
         <>
@@ -216,33 +328,33 @@ export function MirrorPositionParkGame({
             className="rounded-xl bg-blue-50 p-4 text-blue-950"
           >
             <p className="font-semibold">
-              {allPointsChecked
-                ? isEnglish
-                  ? "Li completed the scanning routine."
-                  : "李生完成了觀察程序。"
-                : isEnglish
-                  ? "Some viewing areas were missed."
-                  : "李生漏看了一些觀察位置。"}
+              {isEnglish
+                ? `Your game distance from the target was ${distanceFromTarget.toFixed(1)} units.`
+                : `你與目標位置的遊戲距離為 ${distanceFromTarget.toFixed(1)} 個單位。`}
             </p>
 
             <p className="mt-2 text-sm leading-relaxed">
-              {correctParking
-                ? isEnglish
-                  ? "The vehicle was positioned in the marked area."
-                  : "車輛停在標示的位置。"
-                : isEnglish
-                  ? "The marked area was the preferred parking position for this practice."
-                  : "這次練習中，標示的位置是較合適的泊車位置。"}
+              {isEnglish
+                ? "This simplified activity is for learning only and does not measure real-world parking ability."
+                : "這個簡化活動只供學習用途，並不代表實際泊車能力。"}
+            </p>
+
+            <p className="mt-2 text-sm font-semibold">
+              {isEnglish
+                ? `Game reflection: ${score}/100`
+                : `遊戲反思分數：${score}/100`}
             </p>
           </div>
 
           <OTSupportCard
             language={language}
-            assessment={story.assessment.map((item) =>
-              getLocalizedText(item, language)
+            assessment={story.assessment.map(
+              (item) =>
+                getLocalizedText(item, language)
             )}
-            support={story.support.map((item) =>
-              getLocalizedText(item, language)
+            support={story.support.map(
+              (item) =>
+                getLocalizedText(item, language)
             )}
             strategy={getLocalizedText(
               story.strategy,
@@ -257,9 +369,11 @@ export function MirrorPositionParkGame({
                 stage: "mirrorPositionPark",
                 score,
                 observations: {
-                  checkedAllViewingPoints: allPointsChecked,
-                  selectedParking: selectedParking ?? "none",
-                  usedScanningRoutine: allPointsChecked,
+                  distanceFromTarget: Number(
+                    distanceFromTarget.toFixed(1)
+                  ),
+                  usedDirectionalControls: true,
+                  parkedNearTarget: score >= 80,
                 },
               })
             }

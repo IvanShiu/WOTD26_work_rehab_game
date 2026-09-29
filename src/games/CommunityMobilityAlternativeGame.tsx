@@ -107,7 +107,7 @@ export function CommunityMobilityAlternativeGame({
       <CaseStoryCard
         language={language}
         stageNumber={story.order}
-        totalStages={6}
+        totalStages={7}
         title={getLocalizedText(story.title, language)}
         story={getLocalizedText(story.story, language)}
         focus={getLocalizedText(story.focus, language)}
@@ -244,7 +244,7 @@ export function CommunityMobilityAlternativeGame({
           >
             {isEnglish
               ? "View OT learning profile"
-              : "查看職業治療學習概況"}
+              : "查看結果"}
           </Button>
         </>
       )}

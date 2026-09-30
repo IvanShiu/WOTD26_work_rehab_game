@@ -24,7 +24,7 @@ export function CaseStoryCard({
   const isEnglish = language === "en";
 
   const journeyLabel = isEnglish
-    ? "Li's rehabilitation journey"
+    ? "Lee's rehabilitation journey"
     : "李生的復康旅程";
 
   const stageLabel =

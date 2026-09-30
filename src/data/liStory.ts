@@ -302,7 +302,7 @@ export const liStageStories: Record<
     },
     story: {
       en:
-        "The familiar road to Mr Li's delivery location is closed. He needs to choose a suitable alternative route without making a rushed decision.",
+        "The familiar road to Mr Lee's delivery location is closed. He needs to choose a suitable alternative route without making a rushed decision.",
       "zh-Hant":
         "李生前往送貨地點的熟悉道路突然封閉。他需要選擇合適的替代路線，而不是匆忙作出決定。",
     },

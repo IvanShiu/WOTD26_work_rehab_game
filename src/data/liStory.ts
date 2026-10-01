@@ -31,7 +31,7 @@ export const liCaseStory = {
       en:
         "This is a fictional educational scenario. Every person's abilities and rehabilitation needs are different.",
       "zh-Hant":
-        "這是一個虛構的教育情境。每個人的能力及復康需要都不同。",
+        "此為虛構的教育情境。每個人的能力及復康需要都不同。",
     },
   },
 

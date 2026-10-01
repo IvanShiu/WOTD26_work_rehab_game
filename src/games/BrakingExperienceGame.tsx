@@ -259,7 +259,7 @@ export function BrakingExperienceGame({
             <p className="mt-3 text-xs leading-relaxed text-slate-600">
               {isEnglish
                 ? "This is a simplified demonstration. It is not a clinical reaction-time assessment and does not determine fitness to drive."
-                : "這是一個簡化示範，並不是臨床反應時間評估，也不能用作判斷是否適合駕駛。"}
+                : "此為一簡化範例，並不是臨床反應時間評估，也不能用作判斷是否適合駕駛。"}
             </p>
           </div>
 

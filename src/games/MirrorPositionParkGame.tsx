@@ -341,8 +341,8 @@ export function MirrorPositionParkGame({
 
             <p className="mt-2 text-sm font-semibold">
               {isEnglish
-                ? `Game reflection: ${score}/100`
-                : `遊戲反思分數：${score}/100`}
+                ? `Game score: ${score}/100`
+                : `分數：${score}/100`}
             </p>
           </div>
 

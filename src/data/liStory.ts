@@ -44,7 +44,7 @@ export const liCaseStory = {
       en:
         "After his stroke, Mr Li wants to return to driving. An occupational therapist helps him explore how his abilities, the vehicle, the environment and work demands fit together.",
       "zh-Hant":
-        "中風後，李生希望重返駕駛。職業治療師會協助他了解個人能力、車輛、環境及工作要求之間的配合。",
+        "中風後，李生希望重返駕駛。職業治療師將會協助他了解個人能力、車輛、環境及工作要求之間的配合。",
     },
     focus: {
       en:

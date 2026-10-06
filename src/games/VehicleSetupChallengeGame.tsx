@@ -57,7 +57,7 @@ const setupOptions: SetupOption[] = [
     },
     description: {
       en: "The same setup may not be suitable after a change in function.",
-      "zh-Hant": "功能改變後，原有設定未必仍然適合。",
+      "zh-Hant": "功能改變後，原有裝置的設計未必仍然適合。",
     },
     correct: false,
   },

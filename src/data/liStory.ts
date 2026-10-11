@@ -44,13 +44,13 @@ export const liCaseStory = {
       en:
         "After his stroke, Mr Li wants to return to driving. An occupational therapist helps him explore how his abilities, the vehicle, the environment and work demands fit together.",
       "zh-Hant":
-        "中風後，李生希望重返駕駛。職業治療師將會協助他了解個人能力、車輛、環境及工作要求之間的配合。",
+        "中風後，李生希望重新駕駛並逐步重返工作。職業治療師將協助評估其身體、感知認知功能、駕駛要求及工作需求，並制定合適的復康及重返駕駛計劃。",
     },
     focus: {
       en:
         "OT rehabilitation is not only about deciding whether someone can drive. It also includes assessment, strategy training, graded practice and planning for safe participation.",
       "zh-Hant":
-        "職業治療復康不只是判斷一個人能否駕駛，也包括功能評估、策略訓練、分級練習，以及計劃如何安全地參與生活及工作。",
+        "職業治療於駕駛復康中不只評估駕駛適能，更透過策略訓練、能力提升及環境調整，協助個案安全地重返駕駛及社區生活。",
     },
   },
 

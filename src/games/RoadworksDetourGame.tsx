@@ -138,7 +138,7 @@ export function RoadworksDetourGame({
       <div className="space-y-3">
         <h3 className="text-lg font-bold text-slate-900">
           {isEnglish
-            ? "What should Li do if the route becomes unclear?"
+            ? "What should Lee do if the route becomes unclear?"
             : "如果路線變得不清楚，李生應該怎樣做？"}
         </h3>
 

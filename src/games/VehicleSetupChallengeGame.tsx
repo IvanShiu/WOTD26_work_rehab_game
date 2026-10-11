@@ -29,10 +29,10 @@ const setupOptions: SetupOption[] = [
     id: "comfortable",
     title: {
       en: "Adjust the seat and mirrors for a clear and comfortable view",
-      "zh-Hant": "調整座椅及後視鏡，保持清楚及舒適的視線",
+      "zh-Hant": "調整座椅位置、後視鏡及控制裝置，以確保良好視野及安全操作車輛。",
     },
     description: {
-      en: "Li can see the road, reach the controls and maintain a stable posture.",
+      en: "Lee can see the road, reach the controls and maintain a stable posture.",
       "zh-Hant": "李生可以看清道路、觸及控制裝置，並保持穩定坐姿。",
     },
     correct: true,
@@ -41,11 +41,11 @@ const setupOptions: SetupOption[] = [
     id: "too-close",
     title: {
       en: "Move the seat very close to the steering wheel",
-      "zh-Hant": "將座椅大幅調近方向盤",
+      "zh-Hant": "將座椅過度調近方向盤",
     },
     description: {
       en: "This may restrict movement and make the position uncomfortable.",
-      "zh-Hant": "這可能限制活動，亦可能令坐姿不舒適。",
+      "zh-Hant": "可能影響方向盤操作空間及緊急反應表現。",
     },
     correct: false,
   },
@@ -108,7 +108,7 @@ export function VehicleSetupChallengeGame({
 
         <p className="text-center text-sm font-medium text-slate-700">
           {isEnglish
-            ? "Before moving, Li checks the vehicle setup."
+            ? "Before moving, Lee checks the vehicle setup."
             : "開始行駛前，李生先檢查車輛設定。"}
         </p>
       </div>
@@ -117,7 +117,7 @@ export function VehicleSetupChallengeGame({
         <h3 className="text-lg font-bold text-slate-900">
           {isEnglish
             ? "Choose the most suitable setup"
-            : "選擇最合適的車輛設定"}
+            : "進行適當的駕駛前座位及控制裝置調整"}
         </h3>
 
         {setupOptions.map((option) => {

@@ -29,7 +29,7 @@ const scenarios: DistractionScenario[] = [
   {
     id: "phone",
     question: {
-      en: "A phone notification appears while Li is driving. What is the safest response?",
+      en: "A phone notification appears while Lee is driving. What is the safest response?",
       "zh-Hant": "李生駕駛時收到手機通知。哪一個做法較安全？",
     },
     correct: "ignore",
@@ -60,7 +60,7 @@ const scenarios: DistractionScenario[] = [
   {
     id: "navigation",
     question: {
-      en: "The navigation system needs a new route. What should Li do?",
+      en: "The navigation system needs a new route. What should Lee do?",
       "zh-Hant": "導航系統需要重新規劃路線。李生應該怎樣做？",
     },
     correct: "safe-stop",
@@ -91,7 +91,7 @@ const scenarios: DistractionScenario[] = [
   {
     id: "fatigue",
     question: {
-      en: "Li notices that he is becoming tired. What is the safer choice?",
+      en: "Lee notices that he is becoming tired. What is the safer choice?",
       "zh-Hant": "李生察覺自己開始疲倦。哪一個選擇較安全？",
     },
     correct: "rest",

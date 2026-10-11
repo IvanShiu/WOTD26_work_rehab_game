@@ -183,7 +183,7 @@ export function SafeFollowingDistanceGame({
           <div className="space-y-3">
             <h3 className="text-lg font-bold text-slate-900">
               {isEnglish
-                ? "What should Li do?"
+                ? "What should Lee do?"
                 : "李生應該怎樣做？"}
             </h3>
 

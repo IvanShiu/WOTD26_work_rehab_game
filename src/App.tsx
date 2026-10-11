@@ -75,7 +75,7 @@ function App() {
             <div className="rounded-xl bg-slate-100 p-4">
               <h2 className="font-bold text-slate-900">
                 {isEnglish
-                  ? "About Mr Li"
+                  ? "About Mr Lee"
                   : "關於李生"}
               </h2>
 

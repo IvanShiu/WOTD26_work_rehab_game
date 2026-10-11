@@ -18,12 +18,12 @@ export interface LiStageStory {
 export const liCaseStory = {
   participant: {
     name: {
-      en: "Mr Li",
+      en: "Mr Lee",
       "zh-Hant": "李生",
     },
     background: {
       en:
-        "Mr Li is a delivery driver who had a stroke. He hopes to gradually return to driving and work.",
+        "Mr Lee is a delivery driver who had a stroke. He hopes to gradually return to driving and work.",
       "zh-Hant":
         "李生是一名送貨司機，曾經中風。他希望循序漸進地重返駕駛及送貨工作。",
     },
@@ -42,15 +42,15 @@ export const liCaseStory = {
     },
     story: {
       en:
-        "After his stroke, Mr Li wants to return to driving. An occupational therapist helps him explore how his abilities, the vehicle, the environment and work demands fit together.",
+        "Following a stroke, Mr Lee hopes to return to driving and eventually return to work. An occupational therapist helps assess how his physical, cognitive and perceptual abilities interact with vehicle demands, environmental conditions and work requirements.",
       "zh-Hant":
-        "中風後，李生希望重新駕駛並逐步重返工作。職業治療師將協助評估其身體、感知認知功能、駕駛要求及工作需求，並制定合適的復康及重返駕駛計劃。",
+        "中風後，李生希望重返駕駛，並逐步返回工作崗位。職業治療師會評估其身體功能、認知及感知能力如何配合車輛操作要求、環境條件及工作需求，並制定合適的復康計劃。",
     },
     focus: {
       en:
-        "OT rehabilitation is not only about deciding whether someone can drive. It also includes assessment, strategy training, graded practice and planning for safe participation.",
+        "Driving rehabilitation is not only about determining fitness to drive. It also involves assessment, skill development, graded practice and planning for a safe return to driving and community participation.",
       "zh-Hant":
-        "職業治療於駕駛復康中不只評估駕駛適能，更透過策略訓練、能力提升及環境調整，協助個案安全地重返駕駛及社區生活。",
+        "駕駛復康並不只是評估駕駛適能，更包括能力評估、技巧訓練、分級練習，以及規劃安全重返駕駛及社區參與。",
     },
   },
 
@@ -61,9 +61,9 @@ export const liCaseStory = {
     },
     story: {
       en:
-        "OTs consider the person, vehicle, environment and occupation together. They may provide strategies, graded practice, vehicle setup advice and alternative mobility planning.",
+        "Occupational therapists consider the interaction between the person, vehicle, environment and occupational demands when supporting a return to driving.",
       "zh-Hant":
-        "職業治療師會一併考慮個人、車輛、環境及職業要求，並可能提供安全策略、分級練習、車輛設定建議及其他社區流動方案。",
+        "職業治療師會考慮其個人能力、車輛特性、環境因素及職業要求之間的互動，以協助個案安全重返駕駛。",
     },
   },
 };
@@ -76,47 +76,47 @@ export const liStageStories: Record<
     id: "vehicleSetup",
     order: 1,
     title: {
-      en: "Preparing Mr Li and the vehicle",
-      "zh-Hant": "準備李生及車輛",
+      en: "Preparing for Safe Driving",
+      "zh-Hant": "駕駛前準備",
     },
     story: {
       en:
-        "Before driving practice begins, the OT helps Mr Li check whether the seat, mirrors, steering wheel and controls are suitable for him.",
+        "Before driving practice begins, the OT helps Mr Lee check whether the seat, mirrors, steering wheel and controls are suitable for him.",
       "zh-Hant":
         "開始駕駛練習前，職業治療師先協助李生檢查座椅、後視鏡、方向盤及控制裝置是否適合他。",
     },
     focus: {
       en:
-        "Can Mr Li see clearly, maintain a stable posture and operate the vehicle comfortably?",
+        "Can Mr Lee see clearly, maintain a stable posture and operate the vehicle comfortably?",
       "zh-Hant":
         "李生能否清楚觀察環境、保持穩定坐姿，並舒適地操作車輛？",
     },
     assessment: [
       {
-        en: "Seating posture and stability",
-        "zh-Hant": "坐姿及身體穩定性",
+        en: "Postural control and sitting stability",
+        "zh-Hant": "姿勢控制及坐姿穩定性",
       },
       {
-        en: "Ability to see the mirrors and road ahead",
-        "zh-Hant": "能否看清後視鏡及前方道路",
+        en: "Visual access to mirrors and the driving environment",
+        "zh-Hant": "觀察後視鏡及道路環境的能力",
       },
       {
-        en: "Ability to reach and operate vehicle controls",
-        "zh-Hant": "能否觸及及操作車輛控制裝置",
+        en: "Ability to reach and operate vehicle controls safely",
+        "zh-Hant": "安全伸手接觸及操作車內各項控制裝置的能力",
       },
     ],
     support: [
       {
-        en: "Practise adjusting the seat and mirrors",
-        "zh-Hant": "練習調整座椅及後視鏡",
+        en: "Train vehicle setup and pre-driving safety checks",
+        "zh-Hant": "訓練車輛之設置及駕駛前安全檢查",
       },
       {
-        en: "Use a quiet area for graded practice",
-        "zh-Hant": "先在安靜環境進行分級練習",
+        en: "Provide graded, progressive training according to the individual's ability level.",
+        "zh-Hant": "按能力水平進行循序漸進的分級訓練",
       },
       {
-        en: "Consider further vehicle adaptation assessment if needed",
-        "zh-Hant": "如有需要，考慮進一步車輛輔助設備評估",
+        en: "Consider vehicle adaptation and assistive equipment assessment when required",
+        "zh-Hant": "如有需要，轉介進行車輛改裝及輔助設備評估",
       },
     ],
     strategy: {
@@ -136,15 +136,15 @@ export const liStageStories: Record<
     },
     story: {
       en:
-        "Mr Li now practises low-speed vehicle control in a quiet parking area. He needs to scan the surroundings before moving and stop when a hazard appears.",
+        "Mr Lee now practises low-speed vehicle control in a quiet parking area. He needs to scan the surroundings before moving and stop when a hazard appears.",
       "zh-Hant":
         "李生現在在較安靜的停車場練習低速控制車輛。他需要在移動前觀察周圍，並在危險出現時停車。",
     },
     focus: {
       en:
-        "Can Mr Li use a systematic scanning routine while controlling the vehicle?",
+        "Can Mr Lee control the vehicle while monitoring his surroundings?",
       "zh-Hant":
-        "李生能否一邊控制車輛，一邊使用有系統的觀察程序？",
+        "李生能否一邊控制車輛，一邊觀察周邊環境？",
     },
     assessment: [
       {
@@ -152,26 +152,26 @@ export const liStageStories: Record<
         "zh-Hant": "視覺掃描及盲點檢查",
       },
       {
-        en: "Vehicle position and spatial awareness",
-        "zh-Hant": "車輛位置及空間覺察",
+        en: "Spatial awareness and vehicle positioning",
+        "zh-Hant": "空間知覺及車輛定位能力",
       },
       {
-        en: "Ability to stop safely when a hazard appears",
-        "zh-Hant": "危險出現時能否安全停車",
+        en: "Hazard recognition and safe response",
+        "zh-Hant": "危險辨識及安全反應能力",
       },
     ],
     support: [
       {
-        en: "Practise mirror-side-blind-spot scanning",
-        "zh-Hant": "練習後視鏡、側面及盲點掃描",
+        en: "Train systematic visual scanning strategies",
+        "zh-Hant": "訓練視覺掃描策略",
       },
       {
-        en: "Begin in an open area before adding obstacles",
-        "zh-Hant": "先在空曠地方練習，再逐步加入障礙物",
+        en: "Progress from simple to more complex driving environments",
+        "zh-Hant": "由簡單環境逐步過渡至較複雜的駕駛情境",
       },
       {
-        en: "Repeat the same routine until it becomes familiar",
-        "zh-Hant": "重複練習相同程序，建立熟悉感",
+        en: "Develop safe driving routines through repeated practice",
+        "zh-Hant": "透過重複練習建立安全駕駛習慣",
       },
     ],
     strategy: {
@@ -191,13 +191,13 @@ export const liStageStories: Record<
     },
     story: {
       en:
-        "Mr Li begins practising on a simple road. He needs to notice changes in the vehicle ahead and adjust his speed early.",
+        "Mr Lee begins practising on a simple road. He needs to notice changes in the vehicle ahead and adjust his speed early.",
       "zh-Hant":
         "李生開始在較簡單的道路上練習。他需要留意前方車輛的變化，並及早調節車速。",
     },
     focus: {
       en:
-        "Can Mr Li maintain enough space and time to observe, decide and brake?",
+        "Can Mr Lee maintain enough space and time to observe, decide and brake?",
       "zh-Hant":
         "李生能否保持足夠距離及時間，以便觀察、判斷及煞車？",
     },
@@ -225,8 +225,8 @@ export const liStageStories: Record<
         "zh-Hant": "練習在車距過近前及早減速",
       },
       {
-        en: "Use pacing and planned rest breaks when fatigue appears",
-        "zh-Hant": "感到疲倦時使用節奏控制及預先安排休息",
+        en: "Plan driving and rest breaks appropriately, and stop to rest when fatigue develops.",
+        "zh-Hant": "感到疲倦時及早休息，並適當安排駕駛及休息時間。",
       },
     ],
     strategy: {
@@ -246,28 +246,28 @@ export const liStageStories: Record<
     },
     story: {
       en:
-        "After practising safe following distance, Mr Li practises responding to a sudden hazard in a controlled environment.",
+        "After practising safe following distance, Mr Lee practises responding to a sudden hazard in a controlled environment.",
       "zh-Hant":
         "練習安全車距後，李生在受控環境中練習應對突然出現的危險。",
     },
     focus: {
       en:
-        "Can Mr Li notice a hazard and respond by braking appropriately?",
+        "Can Mr Lee notice a hazard and respond by braking appropriately?",
       "zh-Hant":
-        "李生能否察覺危險，並適當地作出煞車反應？",
+        "李生能否察覺危險，並 煞車反應？",
     },
     assessment: [
       {
-        en: "Reaction to a sudden visual hazard",
-        "zh-Hant": "對突然出現的視覺危險作出反應",
+        en: "Reaction to unexpected hazards",
+        "zh-Hant": "對突發危險的反應能力",
       },
       {
         en: "Ability to coordinate seeing and braking",
         "zh-Hant": "視覺與煞車動作的協調能力",
       },
       {
-        en: "Understanding of reaction distance",
-        "zh-Hant": "對反應距離的理解",
+        en: "Understanding braking and reaction distance",
+        "zh-Hant": "對反應距離及煞車距離的理解",
       },
     ],
     support: [
@@ -308,18 +308,18 @@ export const liStageStories: Record<
     },
     focus: {
       en:
-        "Can Mr Li process new information, plan a route and respond safely to change?",
+        "Can Mr Lee process new information, plan a route and respond safely to change?",
       "zh-Hant":
         "李生能否處理新資訊、規劃路線，並安全地應對環境變化？",
     },
     assessment: [
       {
-        en: "Route planning and problem solving",
-        "zh-Hant": "路線規劃及問題解決",
+        en: "Route planning and problem-solving",
+        "zh-Hant": "路線規劃及問題解決能力",
       },
       {
-        en: "Attention shifting between signs and traffic",
-        "zh-Hant": "在路牌及交通情況之間轉移注意力",
+        en: "Maintain  attention in complex traffic situations",
+        "zh-Hant": "在複雜路況下保持注意力",
       },
       {
         en: "Decision making under pressure",
@@ -357,28 +357,28 @@ export const liStageStories: Record<
     },
     story: {
       en:
-        "During the journey, the navigation system changes and Mr Li receives a phone notification. He needs to decide how to stay focused.",
+        "During the journey, the navigation system changes and Mr Lee receives a phone notification. He needs to decide how to stay focused.",
       "zh-Hant":
         "駕駛途中，導航系統需要重新規劃，而李生亦收到手機通知。他需要決定如何保持專注。",
     },
     focus: {
       en:
-        "Can Mr Li recognise distraction and choose a safer way to manage it?",
+        "Can Mr Lee recognise distraction and choose a safer way to manage it?",
       "zh-Hant":
         "李生能否察覺分心情況，並選擇較安全的處理方法？",
     },
     assessment: [
       {
-        en: "Attention management",
-        "zh-Hant": "注意力管理",
+        en: "Attention management and divided attention",
+        "zh-Hant": "注意力管理及分配注意能力",
       },
       {
-        en: "Ability to suppress unsafe responses",
-        "zh-Hant": "抑制不安全反應的能力",
+        en: "Ability to respond safely",
+        "zh-Hant": "作出安全反應的能力",
       },
       {
         en: "Fatigue awareness and self-monitoring",
-        "zh-Hant": "疲勞覺察及自我監察",
+        "zh-Hant": "疲勞覺察及自我監察能力",
       },
     ],
     support: [
@@ -412,20 +412,20 @@ export const liStageStories: Record<
     },
     story: {
       en:
-        "Mr Li feels tired and the road conditions are difficult today. The OT discusses whether driving is the best option for this particular journey.",
+        "Mr Lee feels tired and the road conditions are difficult today. The OT discusses whether driving is the best option for this particular journey.",
       "zh-Hant":
         "李生今天感到疲倦，而道路情況亦較複雜。職業治療師與他討論，今次行程是否適合自行駕駛。",
     },
     focus: {
       en:
-        "Can Mr Li choose a safe way to remain involved in daily life and work?",
+        "Can Mr Lee choose a safe way to remain involved in daily life and work?",
       "zh-Hant":
         "李生能否選擇安全的方式，繼續參與日常生活及工作？",
     },
     assessment: [
       {
         en: "Ability to recognise personal limits",
-        "zh-Hant": "察覺個人能力限制",
+        "zh-Hant": "察覺其個人能力限制",
       },
       {
         en: "Planning of daily and work activities",
@@ -433,7 +433,7 @@ export const liStageStories: Record<
       },
       {
         en: "Use of alternative transport options",
-        "zh-Hant": "使用其他交通選項",
+        "zh-Hant": "運用替代其他交通的能力",
       },
     ],
     support: [

@@ -17,7 +17,7 @@ const transportOptions = [
       "zh-Hant": "今天使用公共交通或請家人協助",
     },
     description: {
-      en: "This avoids driving when Li is tired and the road conditions are difficult.",
+      en: "This avoids driving when Lee is tired and the road conditions are difficult.",
       "zh-Hant": "李生疲倦及道路情況複雜時，這可以避免自行駕駛。",
     },
   },
@@ -122,7 +122,7 @@ export function CommunityMobilityAlternativeGame({
 
         <span className="ml-1">
           {isEnglish
-            ? "Li is tired, the weather is difficult and he still has activities to complete."
+            ? "Lee is tired, the weather is difficult and he still has activities to complete."
             : "李生感到疲倦，天氣及道路情況較複雜，但仍然有活動需要完成。"}
         </span>
       </div>

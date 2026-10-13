@@ -244,8 +244,8 @@ export function MirrorPositionParkGame({
 
           <p className="text-xs text-slate-500">
             {isEnglish
-              ? "Arrow keys / WASD also work"
-              : "方向鍵／WASD 也可以使用"}
+              ? ""
+              : ""}
           </p>
         </div>
 
